@@ -24,8 +24,15 @@ Ensure you have the following installed on your system:
    git clone https://github.com/your-username/student-management-api.git
    cd student-management-api
    ```
+
+**2.** **Set up a virtual environment:**
+   ```bash
+python -m venv venv
+source venv/bin/activate   # On Windows: venv\Scripts\activate
+```
+
    
-**2.** **Install Dependencies**
+**3.** **Install Dependencies**
    
    Use `pip` to install the necessary packages:
    ```bash
@@ -33,13 +40,6 @@ Ensure you have the following installed on your system:
    pip install -r requirements.txt
    ```
      
-**3.** **Apply Migrations:**
-   
-Create and apply database migrations:
-```bash
-python manage.py makemigrations
-python manage.py migrate
-```
 
 **4.** **Run the Development Server:**
    
