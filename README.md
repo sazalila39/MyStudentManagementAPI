@@ -35,8 +35,7 @@ source venv/bin/activate   # On Windows: venv\Scripts\activate
 **3.** **Install Dependencies**
    
    Use `pip` to install the necessary packages:
-   ```bash
-   pip install fastapi uvicorn pydantic
+   ```bashgit 
    pip install -r requirements.txt
    ```
      
