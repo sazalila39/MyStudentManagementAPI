@@ -35,8 +35,8 @@ source venv/bin/activate   # On Windows: venv\Scripts\activate
 **3.** **Install Dependencies**
    
    Use `pip` to install the necessary packages:
-   ```bashgit 
-   pip install -r requirements.txt
+   ```bash
+   poetry install
    ```
      
 
@@ -44,7 +44,7 @@ source venv/bin/activate   # On Windows: venv\Scripts\activate
    
 Start the FASTAPI development server:
 ```bash
-uvicorn main:app --reload
+poetry run uvicorn myapi:app --reload
 ```
 **5.** **Access the Application:**
 
@@ -62,7 +62,7 @@ Open your browser and navigate to:
 
 1. You are using the correct Python version (python --version to check).
 2. Virtual environments are set up if you prefer isolated environments (e.g., using venv or virtualenv).
-3. All required dependencies are installed without errors (pip install -r requirements.txt)
+3. All required dependencies are installed without errors (poetry install)
 
 
 ## 📚 API Endpoints
