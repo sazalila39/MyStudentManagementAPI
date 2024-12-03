@@ -1,24 +1,9 @@
 [tool.poetry]
-package-mode = false
 name = "student-management-api"
 version = "0.1.0"
 description = "A FastAPI-based student management API."
 authors = ["Sara Alila <sazalila39@yahoo.com>"]
-license = "MIT"
-readme = "README.md"
-
-[tool.poetry.dependencies]
-python = ">=3.9,<4.0"
-fastapi = "^0.115.5"
-uvicorn = "^0.32.1"
-SQLAlchemy = "^2.0.36"
-
-[tool.poetry.group.dev.dependencies]
-pytest = "^8.3.4"
-black = "^24.10.0"
-flake8 = "^7.1.1"
-mypy = "^1.13.0"
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry>=1.1"]
 build-backend = "poetry.core.masonry.api"
