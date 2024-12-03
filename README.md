@@ -31,21 +31,21 @@ python -m venv venv
 source venv/bin/activate   # On Windows: venv\Scripts\activate
 ```
 
-   
 **3.** **Install Dependencies**
    
    Use `poetry` to install the necessary packages:
-   ```basH 
+   ```bash
    poetry install
    ```
      
-
 **4.** **Run the Development Server:**
    
-Start the FASTAPI development server:
+Start the FastAPI development server:
 ```bash
-uvicorn main:app --reload
+poetry run uvicorn myapi:app --reload
 ```
+**Note:** `poetry run` ensures commands are run in the virtual environment created by Poetry.
+
 **5.** **Access the Application:**
 
 
@@ -55,6 +55,45 @@ Open your browser and navigate to:
 
 **Swagger Documentation: http://127.0.0.1:8000/docs**
 
+##  🔄 Managing Dependencies with Poetry
+
+We use Poetry for dependency management. Below are the commands to add, remove, or update libraries.
+
+
+####  Add a Library
+To add a new dependency to the project, use:
+```bash
+poetry add <package-name>
+```
+For example:
+```bash
+poetry add fastapi
+```
+This will automatically update the `pyproject.toml` and `poetry.lock` files.
+
+####  Remove a Library
+To remove an unused library:
+```bash
+poetry remove <package-name>
+```
+For example: 
+```bash
+poetry remove fastapi
+```
+This will remove the package from pyproject.toml and update the lock file.
+
+####  Update Dependencies
+To update all dependencies to the latest versions allowed by pyproject.toml, run:
+```bash
+poetry update
+```
+####  Check Installed Libraries
+To list all installed libraries and their versions:
+```bash
+poetry show
+```
+**Note:** This lists only installed dependencies, not all declared in `pyproject.toml`.
+
 
 ## 🛠 Troubleshooting
 
@@ -62,7 +101,7 @@ Open your browser and navigate to:
 
 1. You are using the correct Python version (python --version to check).
 2. Virtual environments are set up if you prefer isolated environments (e.g., using venv or virtualenv).
-3. All required dependencies are installed without errors (pip install -r requirements.txt)
+3. All required dependencies are installed without errors (`poetry install`).
 
 
 ## 📚 API Endpoints
@@ -71,7 +110,7 @@ Open your browser and navigate to:
 | Method  | Endpoint                      | Description                              |
 |---------|-------------------------------|------------------------------------------|
 | `GET`   | `/`                           | Returns a welcome message.              |
-| `GET`   | `/get-student/{student_id}`   | Retrieves a student by their ID.        |
+| `GET`   | `/get-student/{name}`         | Retrieves a student by their ID.        |
 | `GET`   | `/get-by-name/{student_id}`   | Retrieves a student by their name.      |
 | `POST`  | `/create-student/{student_id}`| Creates a new student record.           |
 | `PUT`   | `/update-student/{student_id}`| Updates an existing student's details.  |
@@ -95,7 +134,7 @@ Open your browser and navigate to:
 GET /get-student/1
 ```
 **Response:**
-```bash
+```json
 {
     "name": "John",
     "age": 17,
