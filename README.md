@@ -34,7 +34,7 @@ source venv/bin/activate   # On Windows: venv\Scripts\activate
    
 **3.** **Install Dependencies**
    
-   Use `pip` to install the necessary packages:
+   Use `poetry` to install the necessary packages:
    ```bash
    poetry install
    ```
