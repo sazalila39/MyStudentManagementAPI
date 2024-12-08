@@ -55,6 +55,49 @@ Open your browser and navigate to:
 
 **Swagger Documentation: http://127.0.0.1:8000/docs**
 
+## 🗄 Database Setup
+
+Ensure your database is set up before running the API.
+
+### Install MySQL
+Follow [this guide](https://dev.mysql.com/downloads/) to install MySQL on your system.
+
+### Create a Database
+Before running the scripts, create a database to hold the data. Use the following command:
+```bash
+mysql -u <username> -p
+```
+Replace `<username>` with your MySQL username.
+Once logged into MySQL, run:
+```bash
+CREATE DATABASE ecommerce_db;
+```
+Replace `ecommerce_db` with the desired database name.
+
+### Run Database Scripts
+Execute the SQL scripts in the database folder to set up the database schema and populate initial data:
+```bash
+mysql -u <username> -p ecommerce_db < database/create_tables.sql
+mysql -u <username> -p ecommerce_db < database/ecommerce.sql
+```
+Replace <username> with your MySQL username. You'll be prompted for your password.
+
+### Configure Database Connection
+The database connection settings are configured in the application’s properties or configuration file. Ensure you update the following fields with your database details:
+
+#### Example Configuration (e.g., `config.py` or equivalent):
+```python
+DATABASE_CONFIG = {
+    "host": "localhost",
+    "port": 3306,
+    "user": "root",
+    "password": "yourpassword",
+    "database": "ecommerce_db",
+}
+```
+Replace the values as needed.
+
+
 ##  🔄 Managing Dependencies with Poetry
 
 We use Poetry for dependency management. Below are the commands to add, remove, or update libraries.
