@@ -85,18 +85,63 @@ Replace <username> with your MySQL username. You'll be prompted for your passwor
 ### Configure Database Connection
 The database connection settings are configured in the application’s properties or configuration file. Ensure you update the following fields with your database details:
 
-#### Example Configuration (e.g., `config.py` or equivalent):
-```python
-DATABASE_CONFIG = {
-    "host": "localhost",
-    "port": 3306,
-    "user": "root",
-    "password": "yourpassword",
-    "database": "ecommerce_db",
-}
+### Seed data for customers table 
+```bash
+INSERT INTO CUSTOMERS (FIRST_NAME, LAST_NAME, ADDRESS, CITY, STATE, COUNTRY, ZIPCODE, PHONE_NUMBER, EMAIL_ID)
+VALUES
+    ('Alice', 'Johnson', '789 Pine St', 'Seattle', 'WA', 'USA', 98101, '111-222-3333', 'alice.johnson@example.com'),
+    ('Bob', 'Brown', '101 Maple Ave', 'Chicago', 'IL', 'USA', 60601, '222-333-4444', 'bob.brown@example.com'),
+    ('Carol', 'Davis', '202 Cedar Rd', 'Miami', 'FL', 'USA', 33101, '333-444-5555', 'carol.davis@example.com');
 ```
-Replace the values as needed.
 
+### Seed data for payments table 
+```bash
+INSERT INTO PAYMENTS (CUSTOMER_ID, PAYMENT_TYPE, EXPIRATION_DATE, EMAIL_ID)
+VALUES
+    (1, 'Credit Card', '2025-12-31', 'john.doe@example.com'),
+    (4, 'Bank Transfer', NULL, 'bob.brown@example.com'),
+    (5, 'Credit Card', '2024-09-30', 'carol.davis@example.com');
+```
+
+### Seed data for products table 
+```bash
+INSERT INTO PRODUCTS (PRODUCT_NAME, PRODUCT_TYPE, PRICE)
+VALUES
+    ('Smartphone', 'Electronics', 699.99),
+    ('Tablet', 'Electronics', 329.99),
+    ('Gaming Chair', 'Furniture', 199.95);
+```
+
+### Seed data for orders table 
+```bash
+INSERT INTO ORDERS (DEVICE, PRODUCT_ID, CUSTOMER_ID, PAYMENT_ID, SHIPPING_ADDRESS, SHIPPING_CITY, SHIPPING_STATE, SHIPPING_COUNTRY, DELIVERED)
+VALUES
+    ('Tablet', 3, 3, 3, '789 Pine St', 'Seattle', 'WA', 'USA', FALSE),
+    ('Desktop', 4, 4, 4, '101 Maple Ave', 'Chicago', 'IL', 'USA', TRUE),
+    ('Mobile', 5, 5, 5, '202 Cedar Rd', 'Miami', 'FL', 'USA', FALSE);
+```
+### How to use:
+1. Run the INSERT statements for each table in the order of dependencies:
+- CUSTOMERS
+- PAYMENTS
+- PRODUCTS
+- ORDERS
+
+### Use the following queries to verify the data:
+Fetch all records:
+```bash
+SELECT * FROM CUSTOMERS;
+SELECT * FROM PAYMENTS;
+SELECT * FROM PRODUCTS;
+SELECT * FROM ORDERS;
+```
+Fetch specific data, such as:
+```bash
+SELECT O.ORDER_ID, C.FIRST_NAME, P.PRODUCT_NAME, O.DELIVERED
+FROM ORDERS O
+    JOIN CUSTOMERS C ON O.CUSTOMER_ID = C.CUSTOMER_ID
+    JOIN PRODUCTS P ON O.PRODUCT_ID = P.PRODUCT_ID;
+```
 
 ##  🔄 Managing Dependencies with Poetry
 
